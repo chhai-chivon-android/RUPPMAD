@@ -1,12 +1,16 @@
 package kh.edu.rupp.fe.ruppmad.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.NetworkImageView;
+
+import kh.edu.rupp.fe.ruppmad.AppSingleton;
 import kh.edu.rupp.fe.ruppmad.R;
 
 /**
@@ -18,8 +22,10 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.Docu
 
     private Document[] documents;
     private RecyclerViewItemClickListener recyclerViewItemClickListener;
+    private Context context;
 
-    public DocumentsAdapter(Document[] documents){
+    public DocumentsAdapter(Context context, Document[] documents){
+        this.context = context;
         this.documents = documents;
     }
 
@@ -39,7 +45,7 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.Docu
     @Override
     public DocumentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View holderView = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_document, parent, false);
+        View holderView = LayoutInflater.from(context).inflate(R.layout.viewholder_document, parent, false);
         DocumentViewHolder viewHolder = new DocumentViewHolder(holderView);
 
         return viewHolder;
@@ -52,6 +58,8 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.Docu
         holder.txtTitle.setText(document.getTitle());
         holder.txtSize.setText(document.getFormatSize());
         holder.txtHits.setText("Hits: " + document.getHits());
+        holder.imgThumbnail.setImageUrl(document.getThumbnailUrl(), AppSingleton.getInstance(context).getImageLoader());
+        Log.d("rupp", "Image url: " + document.getThumbnailUrl());
 
     }
 
@@ -62,7 +70,7 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.Docu
 
     class DocumentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private ImageView imgThumbnail;
+        private NetworkImageView imgThumbnail;
         private TextView txtTitle;
         private TextView txtSize;
         private TextView txtHits;
@@ -70,7 +78,7 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.Docu
         public DocumentViewHolder(View itemView) {
             super(itemView);
 
-            imgThumbnail = (ImageView)itemView.findViewById(R.id.img_thumbnail);
+            imgThumbnail = (NetworkImageView)itemView.findViewById(R.id.img_thumbnail);
             txtTitle = (TextView)itemView.findViewById(R.id.txt_title);
             txtSize = (TextView)itemView.findViewById(R.id.txt_size);
             txtHits = (TextView)itemView.findViewById(R.id.txt_hits);

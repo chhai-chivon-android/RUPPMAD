@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="130dp">
+    android:layout_height="110dp">
 
-    <ImageView
+    <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/img_thumbnail"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_margin="10dp"
         android:src="@drawable/ic_default_image" />
 
     <TextView
@@ -22,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_title"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_toRightOf="@id/img_thumbnail"
         android:text="Size"
 
@@ -33,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_size"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_toRightOf="@id/img_thumbnail"
         android:text="hits: 100" />
 

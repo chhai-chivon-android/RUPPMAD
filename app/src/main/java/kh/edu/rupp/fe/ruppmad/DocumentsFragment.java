@@ -57,18 +57,13 @@ public class DocumentsFragment extends Fragment implements RecyclerViewItemClick
 
         // Adapter
         Document[] emptyDocs = new Document[0];
-        adapter = new DocumentsAdapter(emptyDocs);
+        adapter = new DocumentsAdapter(getActivity(), emptyDocs);
         adapter.setRecyclerViewItemClickListener(this);
         rclDocuments.setAdapter(adapter);
 
-        return fragmentView;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
         loadDocuments();
+
+        return fragmentView;
     }
 
     // Temporary List of Documents
@@ -117,6 +112,8 @@ public class DocumentsFragment extends Fragment implements RecyclerViewItemClick
     public void onRecyclerViewItemClick(int position) {
         Log.d("rupp", "Recycler item click: " + position);
         Document document = adapter.getDocument(position);
+        document.setHits(document.getHits()+1);
+        adapter.notifyDataSetChanged();
         Gson gson = new Gson();
         String serializedDocument = gson.toJson(document);
         Intent intent = new Intent(getActivity(), DocumentActivity.class);
