@@ -7,6 +7,33 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+        <item name="android:buttonStyle">@style/my_button</item>
+
     </style>
+
+
+    <style name="my_button" parent="Widget.AppCompat.Light.ActionButton">
+        <item name="android:background">@android:color/holo_blue_dark</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    
+
+    <style name="txt_profile">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+
+    <style name="txt_profile.label">
+        <item name="android:gravity">right</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="txt_profile.value">
+        <item name="android:textStyle">italic</item>
+    </style>
+    
 
 </resources>

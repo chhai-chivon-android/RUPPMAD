@@ -54,18 +54,11 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:gravity="right"
+                    style="@style/txt_profile.label"
                     android:text="Gender" />
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
+                    style="@style/txt_profile.value"
                     android:text="Male" />
             </LinearLayout>
 
@@ -75,18 +68,11 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:gravity="right"
+                    style="@style/txt_profile.label"
                     android:text="Phone" />
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
+                    style="@style/txt_profile.value"
                     android:text="012 345 678" />
             </LinearLayout>
 
@@ -96,18 +82,11 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:gravity="right"
+                    style="@style/txt_profile.label"
                     android:text="Email" />
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
+                    style="@style/txt_profile.value"
                     android:text="abc@xyz.com" />
             </LinearLayout>
 
@@ -117,18 +96,11 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:gravity="right"
+                    style="@style/txt_profile.label"
                     android:text="Place of birth" />
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
+                    style="@style/txt_profile.value"
                     android:text="Phnom Penh" />
             </LinearLayout>
 
