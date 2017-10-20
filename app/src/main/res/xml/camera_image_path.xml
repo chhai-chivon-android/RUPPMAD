@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path
+        name="camera_image_path"
+        path="Android/data/kh.edu.rupp.fe.ruppmad/files/Pictures" />
+</paths>

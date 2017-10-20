@@ -13,14 +13,14 @@
     tools:context="kh.edu.rupp.fe.ruppmad.LoginActivity">
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:src="@drawable/ic_rupp_logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RUPP Mobile App Dev" />
+        android:text="@string/login_title" />
 
     <EditText
         android:id="@+id/etxt_username"
@@ -41,12 +41,15 @@
         android:id="@+id/chk_remember_me"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remember Me" />
+        android:layout_margin="10dp"
+        android:button="@drawable/notification_checkbox"
+        android:text="Turn on notification" />
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_two_color_button"
         android:text="Login" />
 
 </LinearLayout>

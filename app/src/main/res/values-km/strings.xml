@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">សភភព</string>
+    <string name="open">បើក</string>
+    <string name="close">បិទ</string>
+
+    <string name="login_title">កម្មវិធីទូរសព្ទសភភព</string>
+
+
+    <string name="change_profile_image">ប្តូររូបភាព</string>
+</resources>

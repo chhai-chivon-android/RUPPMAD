@@ -21,7 +21,19 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".DocumentActivity"></activity>
+        <activity android:name=".DocumentActivity" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="kh.edu.rupp.fe.ruppmad.FILE_PROVIDER"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/camera_image_path" />
+
+        </provider>
+
     </application>
 
 </manifest>

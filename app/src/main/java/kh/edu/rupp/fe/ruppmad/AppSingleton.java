@@ -19,7 +19,7 @@ public class AppSingleton {
     private RequestQueue requestQueue;
     private ImageLoader imageLoader;
 
-    private AppSingleton(Context context){
+    private AppSingleton(Context context) {
         requestQueue = Volley.newRequestQueue(context);
         imageLoader = new ImageLoader(requestQueue, new ImageLoader.ImageCache() {
             @Override
@@ -34,8 +34,8 @@ public class AppSingleton {
         });
     }
 
-    public static AppSingleton getInstance(Context context){
-        if(instance == null){
+    public static AppSingleton getInstance(Context context) {
+        if (instance == null) {
             instance = new AppSingleton(context);
         }
         return instance;

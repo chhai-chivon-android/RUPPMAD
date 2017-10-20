@@ -2,4 +2,13 @@
     <string name="app_name">RUPP MAD</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+
+    <string name="login_title">RUPP Mobile App Dev</string>
+
+
+    <string name="change_profile_image">Change Profile Image</string>
+    <string name="msg_change_profile_image">Change your profile image via:</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+
 </resources>
