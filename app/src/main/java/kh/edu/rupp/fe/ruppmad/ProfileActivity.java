@@ -4,22 +4,36 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import kh.edu.rupp.fe.ruppmad.db.DbManager;
+
+import static android.graphics.BitmapFactory.decodeStream;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -45,12 +59,9 @@ public class ProfileActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == GALLERY_REQUEST_CODE) {
                 Uri selectedImageUri = data.getData();
-                try {
-                    Bitmap selectedImage = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                    imgProfile.setImageBitmap(selectedImage);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Bitmap bitmap = loadFitImage(selectedImageUri, imgProfile.getWidth(), imgProfile.getHeight());
+                imgProfile.setImageBitmap(bitmap);
+                uploadProfileImageToServer(selectedImageUri);
             } else if (requestCode == CAMERA_REQUEST_CODE) {
                 /*
                 // Loading thumbnail from captured image
@@ -59,12 +70,9 @@ public class ProfileActivity extends AppCompatActivity {
                 */
 
                 // Load full image
-                try {
-                    Bitmap capturedImage = MediaStore.Images.Media.getBitmap(getContentResolver(), capturedImageUri);
-                    imgProfile.setImageBitmap(capturedImage);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Bitmap bitmap = loadFitImage(capturedImageUri, imgProfile.getWidth(), imgProfile.getHeight());
+                imgProfile.setImageBitmap(bitmap);
+                uploadProfileImageToServer(capturedImageUri);
             }
         }
     }
@@ -112,6 +120,64 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+
+    private Bitmap loadFitImage(Uri imageUri, int targetWidth, int targetHeight) {
+
+        // Get image's size
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        try {
+            decodeStream(getContentResolver().openInputStream(imageUri), null, options);
+            int imageWidth = options.outWidth;
+            int imageHeight = options.outHeight;
+
+            // Caculate scale factor
+            int scaleFactor = Math.min(imageWidth / targetWidth, imageHeight / targetHeight);
+
+            // Modify decode option
+            options.inJustDecodeBounds = false;
+            options.inSampleSize = scaleFactor;
+
+            return BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri), null, options);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    private void uploadProfileImageToServer(Uri imageUri) {
+        Bitmap bitmap = loadFitImage(imageUri, 512, 512);
+
+        // Convert image to base64 string
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+        final String base64String = Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
+
+        // Upload base64 string to Server
+        String uploadProfileUrl = "http://10.0.2.2/test/ruppmad-api/upload-profile.php";
+        StringRequest request = new StringRequest(Request.Method.POST, uploadProfileUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(ProfileActivity.this, "Upload profile image success", Toast.LENGTH_LONG).show();
+                Log.d("rupp", "Success: " + response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(ProfileActivity.this, "Upload profile image error.", Toast.LENGTH_LONG).show();
+                Log.d("rupp", "Upload image error: " + error.getMessage());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("_image_profile", base64String);
+                return params;
+            }
+        };
+        AppSingleton.getInstance(this).getRequestQueue().add(request);
     }
 
 }
