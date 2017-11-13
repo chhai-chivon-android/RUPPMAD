@@ -11,4 +11,6 @@
     <string name="gallery">Gallery</string>
     <string name="camera">Camera</string>
 
+    <string name="googlemap_api_key">AIzaSyDtqhNnv1ibejLQtKrgwQ6Vxa9_O9b0JOM</string>
+
 </resources>

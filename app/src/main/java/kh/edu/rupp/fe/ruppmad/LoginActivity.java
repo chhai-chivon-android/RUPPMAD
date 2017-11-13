@@ -33,6 +33,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         }else{
             startMainActivityAndFinishLoginActivity(username);
         }
+
+        AppSingleton.getInstance(this).setData(null);
+
     }
 
 
@@ -57,6 +60,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 Toast.makeText(this, "Invalid username or password", Toast.LENGTH_LONG).show();
             }
         }
+
+        Object[] data = AppSingleton.getInstance(this).getData();
     }
 
     private void insertLoginHistory(){

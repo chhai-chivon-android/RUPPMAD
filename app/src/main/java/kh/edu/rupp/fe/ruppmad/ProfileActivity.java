@@ -50,6 +50,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_profile);
         imgProfile = (ImageView) findViewById(R.id.img_profile);
+
+        // Check in shared pref
     }
 
     @Override
@@ -162,6 +164,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 Toast.makeText(ProfileActivity.this, "Upload profile image success", Toast.LENGTH_LONG).show();
                 Log.d("rupp", "Success: " + response);
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -178,6 +181,9 @@ public class ProfileActivity extends AppCompatActivity {
             }
         };
         AppSingleton.getInstance(this).getRequestQueue().add(request);
+
+
+        // Store in shared preferrence
     }
 
 }

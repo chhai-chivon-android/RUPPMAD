@@ -19,6 +19,16 @@ public class AppSingleton {
     private RequestQueue requestQueue;
     private ImageLoader imageLoader;
 
+    private Object[] data;
+
+    public Object[] getData() {
+        return data;
+    }
+
+    public void setData(Object[] data) {
+        this.data = data;
+    }
+
     private AppSingleton(Context context) {
         requestQueue = Volley.newRequestQueue(context);
         imageLoader = new ImageLoader(requestQueue, new ImageLoader.ImageCache() {

@@ -24,6 +24,11 @@
             android:icon="@drawable/ic_setting"
             android:title="Settings" />
 
+        <item
+            android:id="@+id/mnu_contact"
+            android:icon="@drawable/ic_contact"
+            android:title="Contact" />
+
     </group>
 
 </menu>

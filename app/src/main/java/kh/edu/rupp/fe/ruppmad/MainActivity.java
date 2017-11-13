@@ -135,14 +135,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Log.d("rupp", "Menu click");
+        FragmentManager fragmentManager = getFragmentManager();
         switch (item.getItemId()) {
             case R.id.mnu_documents:
                 onDocumentsClick();
                 break;
             case R.id.mnu_settings:
-                FragmentManager fragmentManager2 = getFragmentManager();
-                FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
-                fragmentTransaction2.replace(R.id.lyt_content, new SettingsFragment());
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.lyt_content, new SettingsFragment());
+                fragmentTransaction.commit();
+                break;
+            case R.id.mnu_contact:
+                FragmentTransaction fragmentTransaction2 = fragmentManager.beginTransaction();
+                fragmentTransaction2.replace(R.id.lyt_content, new ContactFragment());
                 fragmentTransaction2.commit();
                 break;
         }
