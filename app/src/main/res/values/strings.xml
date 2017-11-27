@@ -5,6 +5,7 @@
 
     <string name="login_title">RUPP Mobile App Dev</string>
 
+    <string name="or_login_with">Or</string>
 
     <string name="change_profile_image">Change Profile Image</string>
     <string name="msg_change_profile_image">Change your profile image via:</string>
@@ -12,5 +13,6 @@
     <string name="camera">Camera</string>
 
     <string name="googlemap_api_key">AIzaSyDtqhNnv1ibejLQtKrgwQ6Vxa9_O9b0JOM</string>
+    <string name="facebook_app_id">153452422071361</string>
 
 </resources>

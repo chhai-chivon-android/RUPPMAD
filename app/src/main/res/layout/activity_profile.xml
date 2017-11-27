@@ -99,7 +99,7 @@
 
                 <TextView
                     style="@style/txt_profile.label"
-                    android:text="Place of birth" />
+                    android:text="Address:" />
 
                 <TextView
                     style="@style/txt_profile.value"

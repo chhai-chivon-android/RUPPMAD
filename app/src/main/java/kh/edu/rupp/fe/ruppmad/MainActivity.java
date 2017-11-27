@@ -146,9 +146,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 fragmentTransaction.commit();
                 break;
             case R.id.mnu_contact:
-                FragmentTransaction fragmentTransaction2 = fragmentManager.beginTransaction();
-                fragmentTransaction2.replace(R.id.lyt_content, new ContactFragment());
-                fragmentTransaction2.commit();
+                android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.lyt_content, new ContactFragment());
+                ft.commit();
                 break;
         }
         drawerLayout.closeDrawers();
